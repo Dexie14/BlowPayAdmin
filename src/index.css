@@ -1,0 +1,97 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap");
+
+/* font-family: "Nunito Sans", sans-serif; */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+}
+body {
+  font-family: "Open Sans", sans-serif;
+  background-color: #fcfdfe;
+  font-weight: 400;
+  color: #000000;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  width: 100vw;
+}
+
+.scrollbar-hidden {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, and Opera */
+}
+
+.scrollableCSS::-webkit-scrollbar {
+  width: 2px;
+  height: 3px;
+}
+
+.scrollableCSS::-webkit-scrollbar-thumb {
+  background: darkgrey;
+}
+
+.scrollableCSS::-webkit-scrollbar-thumb:hover {
+  background: #849aa9;
+}
+
+.tabling {
+  border-collapse: separate;
+  border-spacing: 0px 15px;
+}
+
+/* styles.css */
+.date-range-custom .rdrDateDisplayWrapper {
+  position: absolute;
+  border-top: 1px solid #eaecf0;
+  color: #000000;
+  background-color: transparent;
+  bottom: 15%;
+  left: 0;
+  right: 0;
+  margin-top: 10px; /* Adjust as needed */
+}
+
+.date-range-custom .rdrDateDisplayWrapper .rdrDateDisplayItem input {
+  color: #000000;
+}
+
+.date-range-custom .rdrDayToday .rdrDayNumber span:after {
+  background: #ff114a !important;
+}
+.date-range-custom .rdrDateDisplay {
+  color: #a5a5a5 !important;
+}
+.date-range-custom .rdrDateDisplay .rdrDateDisplayItem {
+  border-radius: 7px;
+}
+.date-range-custom .rdrInRange {
+  color: #e4a2b2 !important;
+}
+.date-range-custom .rdrStartEdge,
+.rdrEndEdge {
+  color: #ff114a !important;
+}
+
+.date-range-custom .rdrDayHovered,
+.date-range-custom .rdrDays:focus {
+  border-color: white !important;
+}
+
+/* .date-range-custom .rdrDay:hover .rdrDayNumber span,
+.date-range-custom .rdrDay:focus .rdrDayNumber span {
+  color: #FF114A !important;
+} */
