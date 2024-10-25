@@ -13,6 +13,7 @@ const SelectValue = SelectPrimitive.Value;
 
 type ExtraTriggerProps = {
   label?: string;
+  labelClassName?: string;
   dropDown?: boolean;
   filter?: boolean;
 };
@@ -21,7 +22,7 @@ const SelectTrigger = React.forwardRef<
   React.ElementRef<typeof SelectPrimitive.Trigger>,
   React.ComponentPropsWithoutRef<typeof SelectPrimitive.Trigger> &
     ExtraTriggerProps
->(({ className, dropDown, label, filter, children, ...props }, ref) => (
+>(({ className, dropDown, label,labelClassName, filter, children, ...props }, ref) => (
   <SelectPrimitive.Trigger
     ref={ref}
     className={cn(
@@ -31,7 +32,9 @@ const SelectTrigger = React.forwardRef<
     {...props}
   >
     {label && (
-      <p className="mr-2 text-xs text-mediumGray px-2 py-1 w-fit bg-blowBG rounded-[16px]">
+      <p
+        className={`mr-2 text-xs text-mediumGray px-2 py-1 w-fit bg-blowBG rounded-[16px] ${labelClassName}`}
+      >
         {label}
       </p>
     )}

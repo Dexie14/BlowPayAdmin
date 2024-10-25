@@ -1,4 +1,4 @@
-import { CardSearchIcon } from "@/assets/svgComp/CardGroupIcons";
+import { CardSearchIcon, FilterIcon } from "@/assets/svgComp/CardGroupIcons";
 import { TransIcon } from "@/assets/svgComp/SidebarIcons";
 
 import TopCard from "@/components/dashboard/TopCard";
@@ -8,6 +8,11 @@ import PageLayout from "@/components/layout/PageLayout";
 import TransTable from "@/components/transaction/TransTable";
 import { Button } from "@/components/ui/button";
 import DateRangeDropdown from "@/components/ui/DateRange";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 
 import PageTitle from "@/components/ui/PageTitle";
 import {
@@ -22,6 +27,7 @@ import {
 import { useState } from "react";
 
 import { Range } from "react-date-range";
+import FilterPop from "@/components/ui/FilterPop";
 
 const TransHistory = () => {
   const [state, setState] = useState<Range[]>([
@@ -81,28 +87,20 @@ const TransHistory = () => {
                 range={state}
                 setRange={setState}
                 onApply={handleApply}
-                isOpen={isDropdownOpen} 
+                isOpen={isDropdownOpen}
                 setIsOpen={setDropdownOpen}
               />
 
-              <Select>
-                <SelectTrigger
-                  filter
-                  className="w-[75px] rounded-[10px] font-bold text-sm text-blowText bg-white border border-borderOutline"
-                >
-                  <SelectValue placeholder="Filter" />
-                </SelectTrigger>
-                <SelectContent className="text-sm">
-                  <SelectGroup>
-                    <SelectLabel className="border-b border-lightGray">
-                      Filter By
-                    </SelectLabel>
-                    <SelectItem value="all">All</SelectItem>
-                    <SelectItem value="active">Active</SelectItem>
-                    <SelectItem value="inactive">Inactive</SelectItem>
-                  </SelectGroup>
-                </SelectContent>
-              </Select>
+              <Popover>
+                <PopoverTrigger className="flex gap-2 items-center px-2 py-2 justify-between w-[90px] rounded-[10px] font-bold text-sm text-blowText bg-white border border-borderOutline">
+                  <FilterIcon />
+                  Filters
+                </PopoverTrigger>
+                <PopoverContent className="rounded-[12px] w-[250px]">
+                  <FilterPop />
+                </PopoverContent>
+              </Popover>
+
               <Button className="border border-borderOutline bg-white rounded-[10px] text-sm text-blowText">
                 Export CSV
               </Button>

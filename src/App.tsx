@@ -17,6 +17,7 @@ import CardDetail from "./pages/cardManagement/CardDetail";
 import TransHistory from "./pages/transactionHistory";
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
+import TransactionDetail from "./pages/transactionHistory/TransactionDetail";
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
         <Route path="/card-management" element={<CardMgt />} />
         <Route path="/card-detail/:id" element={<CardDetail />} />
         <Route path="/history" element={<TransHistory />} />
+        <Route path="/history/:id" element={<TransactionDetail />} />
       </Route>
     </Routes>
   );

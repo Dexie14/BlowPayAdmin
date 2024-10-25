@@ -1,11 +1,13 @@
 // src/components/DateRangeDropdown.tsx
 
 import React from "react";
+
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+
 import { DateRange, Range } from "react-date-range";
 import { DropDownIcon } from "@/assets/svgComp/CardGroupIcons";
 
@@ -25,17 +27,17 @@ const DateRangeDropdown: React.FC<DateRangeDropdownProps> = ({
   isOpen,
 }) => {
   return (
-    <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
-      <DropdownMenuTrigger className="w-fit rounded-[10px] text-blowText focus:outline-none font-bold flex gap-2 items-center justify-between px-2 py-2 text-sm bg-white border border-borderOutline">
+    <Popover open={isOpen} onOpenChange={setIsOpen}>
+      <PopoverTrigger className="w-fit rounded-[10px] text-blowText focus:outline-none font-bold flex gap-2 items-center justify-between px-2 py-2 text-sm bg-white border border-borderOutline">
         <p className="mr-2 text-xs text-mediumGray px-2 py-1 w-fit bg-blowBG rounded-[16px]">
           Date
         </p>
         <h4 className="text-nowrap">Select Date</h4>
         <DropDownIcon />
-      </DropdownMenuTrigger>
+      </PopoverTrigger>
 
       {/* Modal Content */}
-      <DropdownMenuContent className="rounded-[10px] pb-4">
+      <PopoverContent className="rounded-[10px] pb-4 w-fit">
         {/* Date Range Picker */}
         <div className="mt-4">
           <DateRange
@@ -68,8 +70,8 @@ const DateRangeDropdown: React.FC<DateRangeDropdownProps> = ({
             Apply
           </button>
         </div>
-      </DropdownMenuContent>
-    </DropdownMenu>
+      </PopoverContent>
+    </Popover>
   );
 };
 

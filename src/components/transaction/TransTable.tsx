@@ -61,7 +61,7 @@ const TransTable = () => {
     const rowClass = index % 2 === 0 ? "bg-blowBG" : "bg-white";
 
     const handleRowClick = () => {
-      navigate(`/card-detail/${item.id}`, { state: { data: item } });
+      navigate(`/history/${item.id}`, { state: { data: item } });
     };
     return (
       <tr
