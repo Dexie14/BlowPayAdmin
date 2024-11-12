@@ -95,3 +95,9 @@ html {
 .date-range-custom .rdrDay:focus .rdrDayNumber span {
   color: #FF114A !important;
 } */
+
+
+.phoneInput input{
+  outline: none;
+  
+}

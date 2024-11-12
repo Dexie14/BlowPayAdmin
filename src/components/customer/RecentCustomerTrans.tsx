@@ -10,35 +10,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { RowTable } from "./RowTable";
-import TransactionStatus from "./TransactionStatus";
+import TransactionStatus from "../transaction/TransactionStatus";
+import DetailCustomerTable from "./DetailCustomerTable";
 
-export type SampleDataItem = {
-  id: number;
-  amount: number;
-  reference: string;
-  description: string;
-  date: string;
-};
-
-const sampleData: SampleDataItem[] = [
-  {
-    id: 1,
-    amount: 30558.39,
-    reference: "Blowmoney/rhhjer2",
-    description: "Airtime Purchase",
-    date: "Wednesday, July 8, 2024 12:53 PM",
-  },
-  {
-    id: 2,
-    amount: 30558.39,
-    reference: "Blowmoney/rhhjerl-133221212",
-    description: "Flight Booking",
-    date: "Wednesday, July 8, 2024 12:53 PM",
-  },
-];
-
-const RecentTransaction = () => {
+const RecentCustomerTrans = () => {
   return (
     <div>
       <TransactionStatus />
@@ -76,9 +51,7 @@ const RecentTransaction = () => {
             </aside>
           </div>
           <div className="overflow-x-auto scrollableCSS">
-            {sampleData.map((item, index) => (
-              <RowTable item={item} index={index} />
-            ))}
+            <DetailCustomerTable />
           </div>
         </section>
       </section>
@@ -86,4 +59,4 @@ const RecentTransaction = () => {
   );
 };
 
-export default RecentTransaction;
+export default RecentCustomerTrans;

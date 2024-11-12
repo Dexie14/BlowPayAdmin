@@ -1,4 +1,4 @@
-import { TransIcon } from "@/assets/svgComp/SidebarIcons";
+import { CustomerIcon } from "@/assets/svgComp/SidebarIcons";
 import TopCard from "@/components/dashboard/TopCard";
 import Container from "@/components/layout/Container";
 import { useLocation } from "react-router-dom";
@@ -8,15 +8,19 @@ import override from "@/assets/images/override.png";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { BlockIcon, CopyIcon } from "@/assets/svgComp/CardGroupIcons";
 import { Switch } from "@/components/ui/switch";
-import EmptyRefundState from "@/components/cardMgt/EmptyRefundState";
+// import EmptyRefundState from "@/components/cardMgt/EmptyRefundState";
 import {
   PhoneIcon,
   ProfileIcon,
   TransMailIcon,
 } from "@/assets/svgComp/TransactionIcon";
-import RecentTransaction from "@/components/transaction/RecentTransaction";
+import RecentCustomerTrans from "@/components/customer/RecentCustomerTrans";
 
-const TransactionDetail = () => {
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import BlackListDetail from "@/components/customer/BlackListDetail";
+import VirtualWallet from "@/components/customer/VirtualWallet";
+import VirtualCard from "@/components/customer/VirtualCard";
+const CustomerDetail = () => {
   const location = useLocation();
   const { data } = location.state || {}; // Retrieve the object
 
@@ -28,7 +32,7 @@ const TransactionDetail = () => {
 
   return (
     <div>
-      <TopCard text="Transactions" icon={<TransIcon />} className="w-fit" />
+      <TopCard text="Customers" icon={<CustomerIcon />} className="w-fit" />
       <Container>
         <section className="flex justify-between w-full ">
           <div className="w-[30%] px-5 py-10 bg-shadeBackground rounded-[20px] h-[500px]">
@@ -76,7 +80,14 @@ const TransactionDetail = () => {
                 <BlockIcon />
                 <p className="font-semibold text-sm">Blacklist this customer</p>
               </div>
-              <Switch className="!bg-blueGray data-[state=checked]:!bg-slate-900" />
+              <Dialog>
+                <DialogTrigger className="">
+                  <Switch className="!bg-blueGray data-[state=checked]:!bg-slate-900" />
+                </DialogTrigger>
+                <DialogContent className="bg-white !rounded-[30px] overflow-y-scroll scrollbar-hidden h-[80vh] px-6 py-14">
+                  <BlackListDetail />
+                </DialogContent>
+              </Dialog>
             </div>
           </div>
           <div className="w-[68%] ">
@@ -107,15 +118,21 @@ const TransactionDetail = () => {
                 value="Transactions"
                 className=" rounded-[20px] min-h-[400px]"
               >
-                <RecentTransaction />
+                <RecentCustomerTrans />
               </TabsContent>
               <TabsContent
                 value="Wallets"
-                className="bg-shadeBackground p-6 rounded-[20px] min-h-[400px]"
+                className="rounded-[20px] min-h-[400px]"
               >
-                <div className="flex justify-center items-center ">
-                  <EmptyRefundState initiateModal title="No refund Made" subtitle="Customer does not have any Transaction History"/>
-                </div>
+                <VirtualWallet />
+                
+              </TabsContent>
+              <TabsContent
+                value="Card"
+                className="rounded-[20px] min-h-[400px]"
+              >
+                <VirtualCard />
+                
               </TabsContent>
             </Tabs>
           </div>
@@ -125,4 +142,4 @@ const TransactionDetail = () => {
   );
 };
 
-export default TransactionDetail;
+export default CustomerDetail;

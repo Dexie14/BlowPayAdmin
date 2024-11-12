@@ -24,6 +24,8 @@ export default {
         borderOutline: "#E6E9EC",
         blowText: "#000000",
         blowSecondary: "#FF114A",
+        blowWarning: "#FFB82E",
+        blowSuccess: "#01A33D",
         buttonOutline: "#5F5F63",
         inputBorder: "#D0D5DD",
         placeHolderText: "#98A2B3",

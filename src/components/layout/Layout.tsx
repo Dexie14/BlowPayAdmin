@@ -8,9 +8,9 @@ const Layout = () => {
       <div className="w-[16%] bg-blowText text-white p-4">
         <Sidebar />
       </div>
-      <div className="w-[80%]">
+      <div className="w-[82%]">
         <Header />
-        <div className="h-[calc(100vh-83px)] overflow-y-auto scrollbar-hidden  pr-12">
+        <div className="h-[calc(100vh-83px)] overflow-y-auto scrollbar-hidden  pr-6">
           <Outlet />
         </div>
       </div>

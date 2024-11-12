@@ -1,22 +1,23 @@
-import { TransIcon } from "@/assets/svgComp/SidebarIcons";
+import { CardMgtIcon } from "@/assets/svgComp/SidebarIcons";
 import TopCard from "@/components/dashboard/TopCard";
 import Container from "@/components/layout/Container";
 import { useLocation } from "react-router-dom";
 
-import override from "@/assets/images/override.png";
+import usa from "@/assets/images/usa.png";
+import ngn from "@/assets/images/ngn.png";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { BlockIcon, CopyIcon } from "@/assets/svgComp/CardGroupIcons";
 import { Switch } from "@/components/ui/switch";
-import EmptyRefundState from "@/components/cardMgt/EmptyRefundState";
 import {
   PhoneIcon,
   ProfileIcon,
   TransMailIcon,
 } from "@/assets/svgComp/TransactionIcon";
 import RecentTransaction from "@/components/transaction/RecentTransaction";
+import { cardType } from "@/components/wallet/walletTable";
 
-const TransactionDetail = () => {
+const VirtualDetail = () => {
   const location = useLocation();
   const { data } = location.state || {}; // Retrieve the object
 
@@ -26,29 +27,36 @@ const TransactionDetail = () => {
 
   console.log(data, "data");
 
+  const infoImages: Record<cardType, JSX.Element> = {
+    NGN: <img src={ngn} alt="ngn" className="w-[24px] h-[24px]" />,
+    USD: <img src={usa} alt="Mastercard" className="w-[24px] h-[24px]" />,
+  };
+
   return (
     <div>
-      <TopCard text="Transactions" icon={<TransIcon />} className="w-fit" />
+      <TopCard text="Virtual Wallet" icon={<CardMgtIcon />} className="w-fit" />
       <Container>
         <section className="flex justify-between w-full ">
-          <div className="w-[30%] px-5 py-10 bg-shadeBackground rounded-[20px] h-[500px]">
+          <div className="w-[30%] px-3 py-10 bg-shadeBackground rounded-[20px] h-[500px]">
             <aside className="flex items-center gap-4 ">
               <div>
-                <img
-                  src={override}
-                  alt="override"
-                  className="w-[56px] h-[56px]"
-                />
+                <h6 className="font-semibold text-xs">{data?.email}</h6>
+                <h6 className="text-blueGray text-[10px]">Added on Oct 23, 2023</h6>
               </div>
-              <div>
-                <h6 className="font-semibold">{data?.email}</h6>
-                <h6 className="text-blueGray text-xs">Added on Oct 23, 2023</h6>
+              <div className="bg-transparent border rounded-[10px] text-nowrap text-xs h-[38px] w-fit px-4 py-1 flex items-center justify-center gap-2 font-semibold">
+                {infoImages[data?.walletTypeCode as cardType]}
+                <div>
+                  {data.walletType}
+                  <p className="text-[10px] text-disabledText mt-1 font-normal">
+                    {data.walletTypeCode}
+                  </p>
+                </div>
               </div>
             </aside>
             <main className="mt-12">
               <div className="text-xs flex justify-between items-center border-b border-borderOutline pb-2 mb-7">
                 <h6 className="flex items-center gap-3">
-                  <ProfileIcon /> BM/00001
+                  <ProfileIcon /> 5334 * * * * * * 24
                 </h6>
                 <h6 className="cursor-pointer">
                   <CopyIcon />
@@ -89,18 +97,6 @@ const TransactionDetail = () => {
                   >
                     Transactions
                   </TabsTrigger>
-                  <TabsTrigger
-                    className="data-[state=active]:border-b-2 pb-2 bg-shadeBackground data-[state=active]:border-t-0 data-[state=active]:border-x-0 !rounded-none   data-[state=active]:border-blowSecondary text-blueGray data-[state=active]:font-bold"
-                    value="Wallets"
-                  >
-                    Virtual Wallets
-                  </TabsTrigger>
-                  <TabsTrigger
-                    className="data-[state=active]:border-b-2 pb-2 bg-shadeBackground data-[state=active]:border-t-0 data-[state=active]:border-x-0 !rounded-none   data-[state=active]:border-blowSecondary text-blueGray data-[state=active]:font-bold"
-                    value="Card"
-                  >
-                    Virtual Card
-                  </TabsTrigger>
                 </div>
               </TabsList>
               <TabsContent
@@ -108,14 +104,6 @@ const TransactionDetail = () => {
                 className=" rounded-[20px] min-h-[400px]"
               >
                 <RecentTransaction />
-              </TabsContent>
-              <TabsContent
-                value="Wallets"
-                className="bg-shadeBackground p-6 rounded-[20px] min-h-[400px]"
-              >
-                <div className="flex justify-center items-center ">
-                  <EmptyRefundState initiateModal title="No refund Made" subtitle="Customer does not have any Transaction History"/>
-                </div>
               </TabsContent>
             </Tabs>
           </div>
@@ -125,4 +113,4 @@ const TransactionDetail = () => {
   );
 };
 
-export default TransactionDetail;
+export default VirtualDetail;

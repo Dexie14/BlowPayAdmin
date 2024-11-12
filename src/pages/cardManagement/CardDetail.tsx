@@ -111,7 +111,11 @@ const CardDetail = () => {
                 className="bg-shadeBackground p-6 rounded-[20px] min-h-[400px]"
               >
                 <div className="flex justify-center items-center ">
-                  <EmptyRefundState />
+                  <EmptyRefundState
+                    initiateModal
+                    title="No refund Made"
+                    subtitle="Customer does not have any Transaction History"
+                  />
                 </div>
               </TabsContent>
             </Tabs>

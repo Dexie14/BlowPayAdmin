@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router-dom";
+import "react-phone-number-input/style.css";
 import AuthLayout from "./components/layout/AuthLayout";
 import Register from "./pages/authentication/Register";
 import ConfirmEmail from "./pages/authentication/ConfirmEmail";
@@ -15,9 +16,14 @@ import Dashboard from "./pages/dashboard";
 import CardMgt from "./pages/cardManagement";
 import CardDetail from "./pages/cardManagement/CardDetail";
 import TransHistory from "./pages/transactionHistory";
-import 'react-date-range/dist/styles.css';
-import 'react-date-range/dist/theme/default.css';
+import "react-date-range/dist/styles.css";
+import "react-date-range/dist/theme/default.css";
 import TransactionDetail from "./pages/transactionHistory/TransactionDetail";
+import WalletPage from "./pages/virtualWallet";
+import VirtualDetail from "./pages/virtualWallet/VirtualDetail";
+import Messages from "./pages/messages";
+import Customer from "./pages/customers";
+import CustomerDetail from "./pages/customers/CustomerDetail";
 
 function App() {
   return (
@@ -41,6 +47,11 @@ function App() {
         <Route path="/card-detail/:id" element={<CardDetail />} />
         <Route path="/history" element={<TransHistory />} />
         <Route path="/history/:id" element={<TransactionDetail />} />
+        <Route path="/wallet" element={<WalletPage />} />
+        <Route path="/wallet/:id" element={<VirtualDetail />} />
+        <Route path="/message" element={<Messages />} />
+        <Route path="/customers" element={<Customer />} />
+        <Route path="/customers/:id" element={<CustomerDetail />} />
       </Route>
     </Routes>
   );

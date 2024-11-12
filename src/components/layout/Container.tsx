@@ -7,7 +7,7 @@ type ContainerProps = {
 
 const Container: React.FC<ContainerProps> = ({ children, className = '' }) => {
   return (
-    <div className={`bg-white w-full rounded-[15px] py-7 px-4 ${className}`}>
+    <div className={`bg-white w-full rounded-[15px] py-7 px-3 ${className}`}>
       {children}
     </div>
   );
