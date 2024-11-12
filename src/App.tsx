@@ -24,6 +24,7 @@ import VirtualDetail from "./pages/virtualWallet/VirtualDetail";
 import Messages from "./pages/messages";
 import Customer from "./pages/customers";
 import CustomerDetail from "./pages/customers/CustomerDetail";
+import Kyc from "./pages/kyc";
 
 function App() {
   return (
@@ -52,6 +53,7 @@ function App() {
         <Route path="/message" element={<Messages />} />
         <Route path="/customers" element={<Customer />} />
         <Route path="/customers/:id" element={<CustomerDetail />} />
+        <Route path="/kyc" element={<Kyc />} />
       </Route>
     </Routes>
   );

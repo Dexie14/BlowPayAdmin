@@ -138,3 +138,81 @@ export const AddIcon = () => {
     </svg>
   );
 };
+export const EditIcon = () => {
+  return (
+    <svg
+      width="21"
+      height="21"
+      viewBox="0 0 21 21"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <g clip-path="url(#clip0_531_37882)">
+        <path
+          d="M9.24506 3.95215H3.41172C2.9697 3.95215 2.54577 4.12774 2.23321 4.4403C1.92065 4.75286 1.74506 5.17679 1.74506 5.61882V17.2855C1.74506 17.7275 1.92065 18.1514 2.23321 18.464C2.54577 18.7766 2.9697 18.9521 3.41172 18.9521H15.0784C15.5204 18.9521 15.9443 18.7766 16.2569 18.464C16.5695 18.1514 16.7451 17.7275 16.7451 17.2855V11.4521"
+          stroke="#FF114A"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M15.4951 2.70234C15.8266 2.37082 16.2762 2.18457 16.7451 2.18457C17.2139 2.18457 17.6635 2.37082 17.9951 2.70234C18.3266 3.03386 18.5128 3.4835 18.5128 3.95234C18.5128 4.42118 18.3266 4.87082 17.9951 5.20234L10.0784 13.119L6.74506 13.9523L7.57839 10.619L15.4951 2.70234Z"
+          stroke="#FF114A"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </g>
+      <defs>
+        <clipPath id="clip0_531_37882">
+          <rect
+            width="20"
+            height="20"
+            fill="white"
+            transform="translate(0.0783691 0.619141)"
+          />
+        </clipPath>
+      </defs>
+    </svg>
+  );
+};
+export const BinIcon = () => {
+  return (
+    <svg
+      width="21"
+      height="21"
+      viewBox="0 0 21 21"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M2.57837 5.61914H4.24504H17.5784"
+        stroke="#A30D11"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M6.74506 5.61947V3.9528C6.74506 3.51077 6.92065 3.08685 7.23321 2.77429C7.54577 2.46173 7.9697 2.28613 8.41172 2.28613H11.7451C12.1871 2.28613 12.611 2.46173 12.9236 2.77429C13.2361 3.08685 13.4117 3.51077 13.4117 3.9528V5.61947M15.9117 5.61947V17.2861C15.9117 17.7282 15.7361 18.1521 15.4236 18.4646C15.111 18.7772 14.6871 18.9528 14.2451 18.9528H5.91172C5.4697 18.9528 5.04577 18.7772 4.73321 18.4646C4.42065 18.1521 4.24506 17.7282 4.24506 17.2861V5.61947H15.9117Z"
+        stroke="#A30D11"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M8.41168 9.78613V14.7861"
+        stroke="#A30D11"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M11.7451 9.78613V14.7861"
+        stroke="#A30D11"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  );
+};
