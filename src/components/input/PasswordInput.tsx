@@ -10,6 +10,7 @@ interface InputProps {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   placeholder?: string;
   className?: string;
+  passswordClassname?: string;
   error?: string;
   onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
   ref?: React.Ref<HTMLInputElement>;
@@ -23,6 +24,7 @@ const PasswordInput = forwardRef<HTMLInputElement, InputProps>(
       placeholder,
       className,
       error,
+      passswordClassname,
       onBlur,
       value,
       onChange,
@@ -47,7 +49,7 @@ const PasswordInput = forwardRef<HTMLInputElement, InputProps>(
         )}
 
         <div
-          className={`mt-1 flex border-inputBorder border p-4 rounded-[6px] bg-white `}
+          className={`mt-1 flex border-inputBorder border p-4 rounded-[6px] bg-white ${passswordClassname} `}
         >
           <input
             id={name}

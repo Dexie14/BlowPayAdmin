@@ -63,7 +63,7 @@ const KycTable = () => {
     const rowClass = index % 2 === 0 ? "bg-blowBG" : "bg-white";
 
     const handleRowClick = () => {
-      navigate(`/customers/${item.id}`, { state: { data: item } });
+      navigate(`/kyc/${item.id}`, { state: { data: item } });
     };
     return (
       <tr

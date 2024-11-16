@@ -25,6 +25,8 @@ import Messages from "./pages/messages";
 import Customer from "./pages/customers";
 import CustomerDetail from "./pages/customers/CustomerDetail";
 import Kyc from "./pages/kyc";
+import KycDetail from "./pages/kyc/KycDetail";
+import Settings from "./pages/settings";
 
 function App() {
   return (
@@ -54,6 +56,8 @@ function App() {
         <Route path="/customers" element={<Customer />} />
         <Route path="/customers/:id" element={<CustomerDetail />} />
         <Route path="/kyc" element={<Kyc />} />
+        <Route path="/kyc/:id" element={<KycDetail />} />
+        <Route path="/setting" element={<Settings />} />
       </Route>
     </Routes>
   );

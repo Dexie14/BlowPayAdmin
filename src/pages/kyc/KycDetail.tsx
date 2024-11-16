@@ -14,8 +14,10 @@ import {
   ProfileIcon,
   TransMailIcon,
 } from "@/assets/svgComp/TransactionIcon";
-import RecentTransaction from "@/components/transaction/RecentTransaction";
 import { cardType } from "@/components/wallet/walletTable";
+import Tier1 from "@/components/KYC/Tier1";
+import Tier2 from "@/components/KYC/Tier2";
+import Tier3 from "@/components/KYC/Tier3";
 
 const KycDetail = () => {
   const location = useLocation();
@@ -90,22 +92,46 @@ const KycDetail = () => {
             </div>
           </div>
           <div className="w-[68%] ">
-            <Tabs defaultValue="Transactions" className=" ">
+            <Tabs defaultValue="Tier1" className=" ">
               <TabsList className=" flex justify-between rounded-[20px] h-[77px] bg-shadeBackground px-4 mb-5">
                 <div className="flex gap-x-5">
                   <TabsTrigger
                     className=" data-[state=active]:border-b-2 !bg-shadeBackground data-[state=active]:border-t-0 data-[state=active]:border-x-0 !rounded-none pb-2 data-[state=active]:border-blowSecondary data-[state=active]:font-bold  text-blueGray "
-                    value="Transactions"
+                    value="Tier1"
                   >
-                    Transactions
+                    KYC  Tier 1
+                  </TabsTrigger>
+                  <TabsTrigger
+                    className=" data-[state=active]:border-b-2 !bg-shadeBackground data-[state=active]:border-t-0 data-[state=active]:border-x-0 !rounded-none pb-2 data-[state=active]:border-blowSecondary data-[state=active]:font-bold  text-blueGray "
+                    value="Tier2"
+                  >
+                    KYC  Tier 2
+                  </TabsTrigger>
+                  <TabsTrigger
+                    className=" data-[state=active]:border-b-2 !bg-shadeBackground data-[state=active]:border-t-0 data-[state=active]:border-x-0 !rounded-none pb-2 data-[state=active]:border-blowSecondary data-[state=active]:font-bold  text-blueGray "
+                    value="Tier3"
+                  >
+                    KYC  Tier 3
                   </TabsTrigger>
                 </div>
               </TabsList>
               <TabsContent
-                value="Transactions"
-                className=" rounded-[20px] min-h-[400px]"
+                value="Tier1"
+                className="bg-shadeBackground mb-5 w-full p-6 rounded-[20px] min-h-[400px]"
               >
-                <RecentTransaction />
+                <Tier1 />
+              </TabsContent>
+              <TabsContent
+                value="Tier2"
+                className="bg-shadeBackground mb-5 w-full p-6 rounded-[20px] min-h-[400px]"
+              >
+                <Tier2 />
+              </TabsContent>
+              <TabsContent
+                value="Tier3"
+                className="bg-shadeBackground mb-5 w-full p-6 rounded-[20px] min-h-[400px]"
+              >
+                <Tier3 />
               </TabsContent>
             </Tabs>
           </div>
