@@ -8,6 +8,7 @@ import Profile from "@/components/settings/Profile";
 import Contact from "@/components/settings/Contact";
 import Preferences from "@/components/settings/Preferences";
 import ApiChanges from "@/components/settings/ApiChanges";
+import Team from "@/components/settings/Team";
 
 const Settings = () => {
   return (
@@ -44,7 +45,7 @@ const Settings = () => {
                 Team
               </TabsTrigger>
               <TabsTrigger
-                className="data-[state=active]:bg-fadedblowSecondary  data-[state=active]:text-blowSecondary  data-[state=active]:shadow-custom h-[38px] w-fit data-[state=active]:rounded-[10px] text-blueGray text-xs font-bold"
+                className="data-[state=active]:bg-fadedblowSecondary  data-[state=active]:text-blowSecondary  data-[state=active]:shadow-custom h-[38px] w- data-[state=active]:rounded-[10px] text-blueGray text-xs font-bold"
                 value="api"
               >
                 API Keys & Webhooks
@@ -62,6 +63,9 @@ const Settings = () => {
           </TabsContent>
           <TabsContent value="api" className="">
             <ApiChanges />
+          </TabsContent>
+          <TabsContent value="team" className="">
+            <Team />
           </TabsContent>
         </Tabs>
       </Container>

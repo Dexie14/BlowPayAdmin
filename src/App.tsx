@@ -27,6 +27,7 @@ import CustomerDetail from "./pages/customers/CustomerDetail";
 import Kyc from "./pages/kyc";
 import KycDetail from "./pages/kyc/KycDetail";
 import Settings from "./pages/settings";
+import Audit from "./pages/audit";
 
 function App() {
   return (
@@ -58,6 +59,7 @@ function App() {
         <Route path="/kyc" element={<Kyc />} />
         <Route path="/kyc/:id" element={<KycDetail />} />
         <Route path="/setting" element={<Settings />} />
+        <Route path="/audit" element={<Audit />} />
       </Route>
     </Routes>
   );

@@ -1,6 +1,8 @@
 import { Link, useLocation } from "react-router-dom";
 import logo from "@/assets/icons/BlowAppLogo.svg";
 import SearchInputComp from "../input/SearchInputComp";
+
+import userAvatar from "@/assets/images/userAvatar.png";
 import { ReactNode } from "react";
 import {
   AuditIcon,
@@ -12,6 +14,8 @@ import {
   SettingIcon,
   TransIcon,
 } from "@/assets/svgComp/SidebarIcons";
+import { NotificationIcon } from "@/assets/svgComp/NavbarIcons";
+import { Avatar, AvatarFallback } from "../ui/avatar";
 
 type SidebarItem = {
   name: string;
@@ -160,6 +164,19 @@ const Sidebar = () => {
             )}
           </div>
         ))}
+        <div className="flex items-center py-5 gap-7">
+          <aside className="flex items-center gap-1">
+            <Avatar className="bg-disabledText h-[35px] w-[35px] rounded-[100px]">
+              <AvatarFallback className="font-bold text-base bg-disabledText">
+                <img src={userAvatar} alt="user" />
+              </AvatarFallback>
+            </Avatar>
+            <div className="text-xs font-semibold">
+              <h5 className="">Admin</h5>
+            </div>
+          </aside>
+          <NotificationIcon />
+        </div>
       </main>
     </div>
   );
