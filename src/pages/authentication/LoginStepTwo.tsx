@@ -10,9 +10,14 @@ import {
   NavigateFunction,
   useLocation,
   useNavigate,
+  // useNavigate,
 } from "react-router-dom";
 import PasswordInput from "@/components/input/PasswordInput";
 import EmailChange from "@/components/auth/EmailChange";
+import { SignIn } from "@/hooks/api/auth/login";
+import { useAuthStore } from "@/store/authStore";
+import { toast } from "sonner";
+import { useEffect } from "react";
 
 const Registerschema = z.object({
   password: z
@@ -24,6 +29,17 @@ type FormData = z.infer<typeof Registerschema>;
 
 const LoginStepTwo = () => {
   const { state } = useLocation();
+
+  console.log(state)
+  const { setCurrentUser } = useAuthStore();
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (state === null) {
+      navigate("/auth");
+    }
+  }, [state, navigate]);
 
   const {
     register,
@@ -38,12 +54,40 @@ const LoginStepTwo = () => {
     mode: "onChange",
   });
 
-  const navigate = useNavigate();
+  const { loginUser } = SignIn();
 
-  const onSubmit = (data: FormData) => {
-    console.log(data, "dass");
-    if (data) {
-      navigate("/");
+  const { isPending, mutateAsync } = loginUser;
+
+
+
+  const onSubmit = async (data: any) => {
+    try {
+      const formData = new FormData();
+      Object.keys(data).forEach((key) => {
+        if (data[key] !== undefined && data[key] !== null) {
+          formData.append(key, data[key].toString());
+        }
+      });
+
+      if (state?.IntendedEmail) {
+        formData.append("emailAddress", state.IntendedEmail);
+      }
+
+      await mutateAsync(formData, {
+        onSuccess: (response: any) => {
+          const user = response?.data;
+          if (user) {
+            setCurrentUser(user);
+            navigate("/");
+          }
+          toast.success(response?.message);
+        },
+        onError: (error: any) => {
+          toast.error(error?.data?.error);
+        },
+      });
+    } catch (error) {
+      console.log("An error occurred: ", error);
     }
   };
 
@@ -91,7 +135,7 @@ const LoginStepTwo = () => {
           disabled={!isValid}
           className="bg-buttonColor text-blowText text-lg font-normal h-[58px] hover:text-white rounded-[6px] my-7 w-full"
         >
-          Log in
+          {isPending ? "Logging..." : "  Log in"}
         </Button>
       </form>
     </div>

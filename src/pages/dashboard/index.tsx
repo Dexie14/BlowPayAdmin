@@ -13,8 +13,12 @@ import {
 import TopCard from "@/components/dashboard/TopCard";
 import DashboardContent from "@/components/dashboard/DashboardContent";
 import Container from "@/components/layout/Container";
+import { useAuthStore } from "@/store/authStore";
 
 const Dashboard = () => {
+  const { currentUser } = useAuthStore();
+
+  console.log(currentUser, "currentUser");
   return (
     <div>
       <TopCard text="Dashboard" icon={<DashboardIcon />} />

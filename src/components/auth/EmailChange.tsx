@@ -7,7 +7,7 @@ interface EmailChangeProps {
 }
 
 const EmailChange = ({ email, onBack }: EmailChangeProps) => {
-  const emailFallback = email.slice(0, 2).toUpperCase();
+  const emailFallback = email?.slice(0, 2).toUpperCase();
 
   const navigate = useNavigate();
 
