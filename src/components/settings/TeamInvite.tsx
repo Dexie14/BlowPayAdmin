@@ -9,15 +9,64 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useState } from "react";
+import { AdminInvite } from "@/hooks/api/auth/adminInvite";
+import { toast } from "sonner";
+import { RoleObject, RolesApi } from "@/hooks/api/roles/getRoles";
 
-const TeamInvite = () => {
+const TeamInvite = ({
+  setOpenInvite,
+}: {
+  setOpenInvite: (value: boolean) => void;
+}) => {
+  const [teamEmail, setTeamEmail] = useState<string>("");
+  const [selectRole, setSelectedRole] = useState<string>("");
+
+  const { GetRole } = RolesApi();
+  const { data, isFetching } = GetRole();
+
+  console.log(teamEmail, selectRole, "team invite");
+
+  const RoleOptions = data?.data;
+
+  const { adminInvite } = AdminInvite();
+
+  const { mutate, isPending } = adminInvite;
+
+  const onSubmit = () => {
+    const data = {
+      emailAddress: teamEmail,
+      role: selectRole,
+    };
+
+    // const formData = new FormData();
+    // formData.append("emailAddres", teamEmail);
+    // formData.append("role", selectRole);
+
+    mutate(data, {
+      onSuccess: (response: any) => {
+        toast.success(response?.message);
+        setOpenInvite(false);
+      },
+      onError: (error: any) => {
+        toast.error(error?.message || "Error Sending Invite");
+        setOpenInvite(false);
+      },
+    });
+  };
+
   return (
     <div>
       <div>
         <p className="text-[14px] font-semibold text-blowText">Email</p>
-        <InputField placeholder="you@email.com" name="email" type="email" />
+        <InputField
+          onChange={(e) => setTeamEmail(e.target.value)}
+          placeholder="you@email.com"
+          name="email"
+          type="email"
+        />
       </div>
-      <Select>
+      <Select onValueChange={setSelectedRole}>
         <p className="text-[14px] font-semibold text-blowText">Choose Role</p>
         <SelectTrigger
           dropDown
@@ -30,14 +79,24 @@ const TeamInvite = () => {
             <SelectLabel className="border-b border-lightGray">
               Role
             </SelectLabel>
-            <SelectItem value="admin">Admin</SelectItem>
-            <SelectItem value="user">User</SelectItem>
+            {isFetching ? (
+              <p>Fetching..</p>
+            ) : (
+              RoleOptions?.map((role: RoleObject) => (
+                <SelectItem key={role.id} value={role.id}>
+                  {role.name}
+                </SelectItem>
+              ))
+            )}
           </SelectGroup>
         </SelectContent>
       </Select>
 
-      <Button className="bg-blowText text-white text-sm cursor-pointer font-normal h-[50px] w-full rounded-[20px] my-4">
-        Invite Team member
+      <Button
+        onClick={onSubmit}
+        className="bg-blowText text-white text-sm cursor-pointer font-normal h-[50px] w-full rounded-[20px] my-4"
+      >
+        {isPending ? "Inviting...." : "Invite Team member"}
       </Button>
     </div>
   );

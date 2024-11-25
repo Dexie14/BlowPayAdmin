@@ -7,7 +7,11 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { useNavigate } from "react-router-dom";
+import { useLocation,
+  //  useNavigate 
+  } from "react-router-dom";
+import { toast } from "sonner";
+import { SignIn } from "@/hooks/api/auth/login";
 
 const Registerschema = z.object({
   email: z
@@ -24,6 +28,15 @@ const Registerschema = z.object({
 type FormData = z.infer<typeof Registerschema>;
 
 const Register = () => {
+
+
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const userId = queryParams.get('user'); 
+  
+  console.log(userId);
+
+
   const {
     register,
     handleSubmit,
@@ -38,14 +51,43 @@ const Register = () => {
     mode: "onChange",
   });
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
+
+  const { acceptInvite } = SignIn(userId);
+
+  const { mutate } = acceptInvite;
+
 
   const onSubmit = (data: FormData) => {
-    console.log(data, "dass");
-    if (data) {
-      navigate("/auth/otp");
-    }
+
+     const formData = new FormData();
+    formData.append("emailAddres", data?.email);
+   
+
+    mutate(formData, {
+      onSuccess: (response: any) => {
+        toast.success(response?.message);
+       
+      },
+      onError: (error: any) => {
+        toast.error(error?.message || "Error registering ");
+     
+      },
+    });
   };
+
+  
+  // const onSubmit = (data: FormData) => {
+  //   console.log(data, "dass");
+
+  //   if (data) {
+  //     navigate("/auth/otp", {
+  //       state: {
+  //         IntendedEmail: data?.email,
+  //       },
+  //     });
+  //   }
+  // };
 
   return (
     <div>
@@ -110,8 +152,9 @@ const Register = () => {
       </form>
 
       <p className="text-center text-disabledText text-sm font-light mt-7">
-        By signing up, I agree to the Blow Pay <u className="text-blowSecondary">Terms of Service</u> and
-        acknowledge that the <u className="text-blowSecondary">Privacy statement</u> applies
+        By signing up, I agree to the Blow Pay{" "}
+        <u className="text-blowSecondary">Terms of Service</u> and acknowledge
+        that the <u className="text-blowSecondary">Privacy statement</u> applies
       </p>
     </div>
   );

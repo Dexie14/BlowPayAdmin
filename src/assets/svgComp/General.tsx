@@ -131,9 +131,9 @@ export const AddIcon = () => {
       <path
         d="M1.91547 5.22656H8.91547M5.41547 1.72656V8.72656"
         stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );
@@ -147,20 +147,20 @@ export const EditIcon = () => {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <g clip-path="url(#clip0_531_37882)">
+      <g clipPath="url(#clip0_531_37882)">
         <path
           d="M9.24506 3.95215H3.41172C2.9697 3.95215 2.54577 4.12774 2.23321 4.4403C1.92065 4.75286 1.74506 5.17679 1.74506 5.61882V17.2855C1.74506 17.7275 1.92065 18.1514 2.23321 18.464C2.54577 18.7766 2.9697 18.9521 3.41172 18.9521H15.0784C15.5204 18.9521 15.9443 18.7766 16.2569 18.464C16.5695 18.1514 16.7451 17.7275 16.7451 17.2855V11.4521"
           stroke="#FF114A"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
         <path
           d="M15.4951 2.70234C15.8266 2.37082 16.2762 2.18457 16.7451 2.18457C17.2139 2.18457 17.6635 2.37082 17.9951 2.70234C18.3266 3.03386 18.5128 3.4835 18.5128 3.95234C18.5128 4.42118 18.3266 4.87082 17.9951 5.20234L10.0784 13.119L6.74506 13.9523L7.57839 10.619L15.4951 2.70234Z"
           stroke="#FF114A"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
       </g>
       <defs>
@@ -188,30 +188,30 @@ export const BinIcon = () => {
       <path
         d="M2.57837 5.61914H4.24504H17.5784"
         stroke="#A30D11"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M6.74506 5.61947V3.9528C6.74506 3.51077 6.92065 3.08685 7.23321 2.77429C7.54577 2.46173 7.9697 2.28613 8.41172 2.28613H11.7451C12.1871 2.28613 12.611 2.46173 12.9236 2.77429C13.2361 3.08685 13.4117 3.51077 13.4117 3.9528V5.61947M15.9117 5.61947V17.2861C15.9117 17.7282 15.7361 18.1521 15.4236 18.4646C15.111 18.7772 14.6871 18.9528 14.2451 18.9528H5.91172C5.4697 18.9528 5.04577 18.7772 4.73321 18.4646C4.42065 18.1521 4.24506 17.7282 4.24506 17.2861V5.61947H15.9117Z"
         stroke="#A30D11"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M8.41168 9.78613V14.7861"
         stroke="#A30D11"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M11.7451 9.78613V14.7861"
         stroke="#A30D11"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );
@@ -248,8 +248,8 @@ export const EnforceIcon = () => {
       <path
         d="M3.76187 3.69889H8.23738M3.76187 5.19364H5.99962M3.76187 6.68864H4.28238M6.38963 10.7359L8.87088 8.71389C9.13068 8.5022 9.34009 8.23532 9.48391 7.93263C9.62773 7.62993 9.70236 7.29901 9.70238 6.96389V2.42664C9.70225 2.28019 9.65379 2.13789 9.56451 2.0218C9.47523 1.90572 9.35013 1.82235 9.20862 1.78464L7.42113 1.31039C6.48958 1.0632 5.50967 1.0632 4.57812 1.31039L2.79062 1.78464C2.64912 1.82235 2.52402 1.90572 2.43474 2.0218C2.34546 2.13789 2.297 2.28019 2.29688 2.42664V6.96414C2.29686 7.29924 2.37145 7.63015 2.51523 7.93284C2.65901 8.23554 2.86837 8.50242 3.12812 8.71414L5.60963 10.7361C5.71979 10.8259 5.85753 10.8749 5.99962 10.8749C6.14172 10.8749 6.27946 10.8256 6.38963 10.7359Z"
         stroke="currentColor"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );
@@ -263,7 +263,7 @@ export const RolesettingIcon = () => {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <g clip-path="url(#clip0_452_4881)">
+      <g clipPath="url(#clip0_452_4881)">
         <path
           d="M6.5 7.875C6.00272 7.875 5.52581 7.67746 5.17417 7.32583C4.82254 6.97419 4.625 6.49728 4.625 6C4.625 5.50272 4.82254 5.02581 5.17417 4.67417C5.52581 4.32254 6.00272 4.125 6.5 4.125C6.99728 4.125 7.47419 4.32254 7.82583 4.67417C8.17746 5.02581 8.375 5.50272 8.375 6C8.375 6.49728 8.17746 6.97419 7.82583 7.32583C7.47419 7.67746 6.99728 7.875 6.5 7.875ZM6.5 4.875C6.20163 4.875 5.91548 4.99353 5.7045 5.2045C5.49353 5.41548 5.375 5.70163 5.375 6C5.375 6.29837 5.49353 6.58452 5.7045 6.7955C5.91548 7.00647 6.20163 7.125 6.5 7.125C6.79837 7.125 7.08452 7.00647 7.2955 6.7955C7.50647 6.58452 7.625 6.29837 7.625 6C7.625 5.70163 7.50647 5.41548 7.2955 5.2045C7.08452 4.99353 6.79837 4.875 6.5 4.875Z"
           fill="currentColor"

@@ -30,7 +30,7 @@ const Header = () => {
               </AvatarFallback>
             </Avatar>
             <div className="text-xs font-semibold">
-              <h5 className="mb-1">Admin</h5>
+              <h5 className="mb-1">{currentUser?.role?.name}</h5>
               <h5>{currentUser?.emailAddress}</h5>
             </div>
           </aside>

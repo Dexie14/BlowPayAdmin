@@ -6,9 +6,12 @@ const axiosInstance = axios.create({
   baseURL: BASE_URL,
   headers: {
     "Content-Type": "application/json",
-    Accept: "application/json",
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
   },
 });
+
+axiosInstance.defaults.withCredentials = true;
 
 // axiosInstance.interceptors.request.use((config) => {
 //   const { accessToken } = useAuthStore();

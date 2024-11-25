@@ -1,5 +1,6 @@
 import { ExpenseIcon, SavingIcon, UserIcon } from "@/assets/svgComp/General";
 import { InfoType } from "./DashboardContent";
+import { v4 } from "uuid";
 
 type props = {
   infoData: InfoType;
@@ -17,7 +18,10 @@ const InfoCard = ({ infoData }: props) => {
     <div className="flex items-center gap-x-4 ">
       {infoData?.map((item) => {
         return (
-          <main className="flex gap-2 mt-4 flex-col bg-white py-5 px-4 rounded-[10px] shadow-custom w-[180px] h-[90px]">
+          <main
+            key={v4()}
+            className="flex gap-2 mt-4 flex-col bg-white py-5 px-4 rounded-[10px] shadow-custom w-[180px] h-[90px]"
+          >
             <div className="flex items-center justify-between">
               <p className="text-sm font-semibold text-blueGray">
                 {item?.title}

@@ -1,13 +1,18 @@
 import { useApiMutation } from "@/hooks/useApiMutation";
 import { AuthResponse } from "../types";
 
-export const SignIn = () => {
+export const SignIn = (userId?: string | null) => {
   const loginUser = useApiMutation<AuthResponse, FormData>({
     url: "/auth/login ",
+    method: "POST",
+  });
+  const acceptInvite = useApiMutation<AuthResponse, FormData>({
+    url: `/auth/invite/accept?user=${userId}`,
     method: "POST",
   });
 
   return {
     loginUser,
+    acceptInvite,
   };
 };

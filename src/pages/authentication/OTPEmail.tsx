@@ -3,10 +3,12 @@ import { Button } from "@/components/ui/button";
 import { useState } from "react";
 
 import OtpInput from "react-otp-input";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const OTPEmail = () => {
   const [otpValues, setOtpValues] = useState("");
+
+  const { state } = useLocation();
 
   const navigate = useNavigate();
   const onSubmit = (data: string) => {
@@ -26,7 +28,7 @@ const OTPEmail = () => {
         <p className="my-7 text-lg text-disabledText">
           We sent a six digit code to{" "}
           <span className="font-bold text-blowText ">
-            adebalanced06@gmail.com
+            {state.IntendedEmail}
           </span>
           . Enter the Code below
         </p>

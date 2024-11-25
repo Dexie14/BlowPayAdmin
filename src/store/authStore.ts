@@ -14,16 +14,21 @@ interface AuthState {
 const authStore = createStore<AuthState>()(
   persist(
     (set) => ({
-      accessToken: null,
       currentUser: null,
       setCurrentUser: (user) => set({ currentUser: user }),
       logout: () => set({ currentUser: null }),
     }),
     {
       name: "auth",
-      storage: createJSONStorage(() => localStorage),
+      storage: createJSONStorage(() => sessionStorage),
     }
   )
 );
+
+// const authStore = createStore<AuthState>((set) => ({
+//   currentUser: null,
+//   setCurrentUser: (user) => set({ currentUser: user }),
+//   logout: () => set({ currentUser: null }),
+// }));
 
 export const useAuthStore = authStore.getState;

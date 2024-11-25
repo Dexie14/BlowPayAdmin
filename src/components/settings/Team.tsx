@@ -24,8 +24,15 @@ import {
 } from "@/assets/svgComp/General";
 import SettingFilter from "./SettingFilter";
 import TeamInvite from "./TeamInvite";
+import { useState } from "react";
 
 const Team = () => {
+
+
+  
+  const [openInvite, setOpenInvite] = useState<boolean>(false);
+
+
   return (
     <div>
       <Container>
@@ -96,7 +103,7 @@ const Team = () => {
                 </DialogContent>
               </Dialog>
 
-              <Dialog>
+              <Dialog open={openInvite} onOpenChange={setOpenInvite}>
                 <DialogTrigger className="w-full">
                   <Button className="bg-blowSecondary text-white text-xs font-bold w-[132px] h-[45px] hover:text-white rounded-[10px]">
                     <div className="mr-1">
@@ -110,7 +117,7 @@ const Team = () => {
                     <h4 className="text-lg font-semibold text-blowText text-center mt-9 mb-4">
                       Invite Team Member
                     </h4>
-                    <TeamInvite />
+                    <TeamInvite setOpenInvite={setOpenInvite} />
                   </DialogDescription>
                 </DialogContent>
               </Dialog>

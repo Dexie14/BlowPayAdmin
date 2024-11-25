@@ -29,12 +29,16 @@ export interface ApiOptions extends Omit<AxiosRequestConfig, "url" | "method"> {
 export interface AuthData {
   emailAddress: string;
   password:     string;
-  role:         string;
+  role:         RoleData;
   firstName:    string;
   lastName:     string;
   status:       string;
   createdAt:    Date;
   updatedAt:    Date;
   id:           string;
+}
+
+export interface RoleData {
+  name: string;
 }
 
