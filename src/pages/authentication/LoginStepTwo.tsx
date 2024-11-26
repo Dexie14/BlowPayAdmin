@@ -3,7 +3,7 @@ import ReturnBack from "@/components/auth/ReturnBack";
 import { Button } from "@/components/ui/button";
 // import { getCookie } from "@/utils/cookie"; 
 
-import Cookies from "js-cookie";
+// import Cookies from "js-cookie";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -61,9 +61,9 @@ const LoginStepTwo = () => {
   const { isPending, mutateAsync } = loginUser;
 
   // const cookieValue = getCookie('fL4vMdEDx5r7cz');
-  const cookieValue = Cookies.get('fL4vMdEDx5r7cz');
+  // const cookieValue = Cookies.get('fL4vMdEDx5r7cz');
 
-console.log(cookieValue, "iddd");  
+// console.log(cookieValue, "iddd");  
 
 
 
@@ -88,7 +88,7 @@ console.log(cookieValue, "iddd");
             navigate("/");
           }
           toast.success(response?.message);
-          console.log(response, "responsebyzeek")
+          // console.log(response, "responsebyzeek")
         },
         onError: (error: any) => {
           toast.error(error?.data?.error);

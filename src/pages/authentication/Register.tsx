@@ -7,19 +7,26 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { useLocation,
-  //  useNavigate 
-  } from "react-router-dom";
+import {
+  useLocation,
+   useNavigate
+} from "react-router-dom";
 import { toast } from "sonner";
 import { SignIn } from "@/hooks/api/auth/login";
+import PasswordInput from "@/components/input/PasswordInput";
 
 const Registerschema = z.object({
-  email: z
+  // email: z
+  //   .string()
+  //   .email({
+  //     message: "Please enter the correct email for a staff account.",
+  //   })
+  //   .refine((s) => !s.includes(" "), "No spaces allowed"),
+  firstName: z.string().refine((s) => !s.includes(" "), "No spaces allowed"),
+  lastName: z.string().refine((s) => !s.includes(" "), "No spaces allowed"),
+  password: z
     .string()
-    .email({
-      message: "Please enter the correct email for a staff account.",
-    })
-    .refine((s) => !s.includes(" "), "No spaces allowed"),
+    .min(8, { message: "password must contain at least 8 characters" }),
   acceptTerms: z.boolean().refine((val) => val === true, {
     message: "You must accept the terms and conditions",
   }),
@@ -28,14 +35,11 @@ const Registerschema = z.object({
 type FormData = z.infer<typeof Registerschema>;
 
 const Register = () => {
-
-
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
-  const userId = queryParams.get('user'); 
-  
-  console.log(userId);
+  const userId = queryParams.get("user");
 
+  console.log(userId);
 
   const {
     register,
@@ -44,39 +48,38 @@ const Register = () => {
     formState: { errors, isValid },
   } = useForm<FormData>({
     defaultValues: {
-      email: "",
+      firstName: "",
+      lastName: "",
+      password: "",
       acceptTerms: false,
     },
     resolver: zodResolver(Registerschema),
     mode: "onChange",
   });
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const { acceptInvite } = SignIn(userId);
 
-  const { mutate } = acceptInvite;
-
+  const { mutate, isPending } = acceptInvite;
 
   const onSubmit = (data: FormData) => {
-
-     const formData = new FormData();
-    formData.append("emailAddres", data?.email);
-   
+    const formData = new FormData();
+    formData.append("firstName", data?.firstName);
+    formData.append("lastName", data?.lastName);
+    formData.append("password", data?.password);
 
     mutate(formData, {
       onSuccess: (response: any) => {
         toast.success(response?.message);
-       
+        navigate("/auth");
       },
       onError: (error: any) => {
         toast.error(error?.message || "Error registering ");
-     
       },
     });
   };
 
-  
   // const onSubmit = (data: FormData) => {
   //   console.log(data, "dass");
 
@@ -99,7 +102,7 @@ const Register = () => {
         />
       </div>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div>
+        {/* <div>
           {errors.email && (
             <div className="w-full bg-fadedblowSecondary border border-dashed border-borderBlowSecondary px-4 py-1  my-7 text-errorBlack text-sm font-semibold">
               {errors.email?.message}
@@ -111,6 +114,48 @@ const Register = () => {
             type="email"
             label="Email"
             placeholder="you@email.com"
+          />
+        </div> */}
+
+        <div>
+          {errors.firstName && (
+            <div className="w-full bg-fadedblowSecondary border border-dashed border-borderBlowSecondary px-4 py-1  my-7 text-errorBlack text-sm font-semibold">
+              {errors.firstName?.message}
+            </div>
+          )}
+          <InputField
+            {...register("firstName")}
+            name="firstName"
+            type="text"
+            label="First Name"
+            placeholder="Enter your first name"
+          />
+        </div>
+        <div>
+          {errors.lastName && (
+            <div className="w-full bg-fadedblowSecondary border border-dashed border-borderBlowSecondary px-4 py-1  my-7 text-errorBlack text-sm font-semibold">
+              {errors.lastName?.message}
+            </div>
+          )}
+          <InputField
+            {...register("lastName")}
+            name="lastName"
+            type="text"
+            label="Last Name"
+            placeholder="Enter your last name"
+          />
+        </div>
+        <div>
+          {errors.password && (
+            <div className="w-full bg-fadedblowSecondary border border-dashed border-borderBlowSecondary px-4 py-1  my-7 text-errorBlack text-sm font-semibold">
+              {errors.password?.message}
+            </div>
+          )}
+          <PasswordInput
+            {...register("password")}
+            name="password"
+            label="Password"
+            placeholder="Enter Password"
           />
         </div>
         <div className="flex items-center space-x-4 my-7">
@@ -147,7 +192,7 @@ const Register = () => {
           <div className="mr-8">
             <MailIcon />
           </div>
-          Verify Account
+          {isPending ? "Verifying..." : "Verify Account"}
         </Button>
       </form>
 
