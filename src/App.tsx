@@ -28,6 +28,7 @@ import Kyc from "./pages/kyc";
 import KycDetail from "./pages/kyc/KycDetail";
 import Settings from "./pages/settings";
 import Audit from "./pages/audit";
+import { ProtectedRoute } from "./utils/ProtectedRoute";
 
 function App() {
   return (
@@ -45,21 +46,23 @@ function App() {
         <Route path="authenticate" element={<AuthenticateAccount />} />
       </Route>
 
-      <Route path="/" element={<Layout />}>
-        <Route path="/" element={<Dashboard />} />
-        <Route path="/card-management" element={<CardMgt />} />
-        <Route path="/card-detail/:id" element={<CardDetail />} />
-        <Route path="/history" element={<TransHistory />} />
-        <Route path="/history/:id" element={<TransactionDetail />} />
-        <Route path="/wallet" element={<WalletPage />} />
-        <Route path="/wallet/:id" element={<VirtualDetail />} />
-        <Route path="/message" element={<Messages />} />
-        <Route path="/customers" element={<Customer />} />
-        <Route path="/customers/:id" element={<CustomerDetail />} />
-        <Route path="/kyc" element={<Kyc />} />
-        <Route path="/kyc/:id" element={<KycDetail />} />
-        <Route path="/setting" element={<Settings />} />
-        <Route path="/audit" element={<Audit />} />
+      <Route path="/" element={<ProtectedRoute />}>
+        <Route path="/" element={<Layout />}>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/card-management" element={<CardMgt />} />
+          <Route path="/card-detail/:id" element={<CardDetail />} />
+          <Route path="/history" element={<TransHistory />} />
+          <Route path="/history/:id" element={<TransactionDetail />} />
+          <Route path="/wallet" element={<WalletPage />} />
+          <Route path="/wallet/:id" element={<VirtualDetail />} />
+          <Route path="/message" element={<Messages />} />
+          <Route path="/customers" element={<Customer />} />
+          <Route path="/customers/:id" element={<CustomerDetail />} />
+          <Route path="/kyc" element={<Kyc />} />
+          <Route path="/kyc/:id" element={<KycDetail />} />
+          <Route path="/setting" element={<Settings />} />
+          <Route path="/audit" element={<Audit />} />
+        </Route>
       </Route>
     </Routes>
   );

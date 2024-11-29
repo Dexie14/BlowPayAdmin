@@ -39,7 +39,7 @@ const Register = () => {
   const queryParams = new URLSearchParams(location.search);
   const userId = queryParams.get("user");
 
-  console.log(userId);
+  // console.log(userId);
 
   const {
     register,

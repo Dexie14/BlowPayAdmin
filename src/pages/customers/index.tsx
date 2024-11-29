@@ -24,12 +24,18 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import AddCustomer from "@/components/customer/AddCustomer";
+import { customerApi } from "@/hooks/api/crud/customer";
 // import { useState } from "react";
 
 const Customer = () => {
   //  const [first, setfirst] = useState("")
 
   // console.log(first, "value");
+
+  const { GetAllCustomers } = customerApi();
+  const { data: allCustomers, isFetching } = GetAllCustomers();
+
+  console.log(allCustomers);
 
   return (
     <div>
@@ -84,7 +90,14 @@ const Customer = () => {
               </Button>
             </aside>
           </div>
-          <CustomerTable />
+
+          {isFetching ? (
+            <div>
+              <p className="text-center">Loading...</p>
+            </div>
+          ) : (
+            <CustomerTable allCustomerData={allCustomers?.data ?? []} />
+          )}
         </PageLayout>
       </Container>
     </div>

@@ -1,38 +1,42 @@
 import TableComp from "../table/TableComp";
 import Pagination from "../table/Pagination";
 import { useNavigate } from "react-router-dom";
+import { AllCustomerData } from "@/hooks/api/crud/customer";
+import { format, parseISO } from "date-fns";
+import { useState } from "react";
 
-export type DataItem = {
-  id: number;
-  email: string;
-  fullName: string;
-  phone: string;
-  date: string;
-};
+// export type DataItem = {
+//   id: number;
+//   email: string;
+//   fullName: string;
+//   phone: string;
+//   date: string;
+//   allCustomerData: AllCustonmerType;
+// };
 
-const sampleData: DataItem[] = [
-  {
-    id: 1,
-    email: "jonasajoku@gmail.com",
-    fullName: "Jonah Ani Nonso",
-    phone: "+2348023456789",
-    date: "July 8, 2024 12:53 PM",
-  },
-  {
-    id: 1,
-    email: "jonasajoku@gmail.com",
-    fullName: "Jonah Ani Nonso",
-    phone: "+2348023456789",
-    date: "July 8, 2024 12:53 PM",
-  },
-  {
-    id: 1,
-    email: "jonasajoku@gmail.com",
-    fullName: "Jonah Ani Nonso",
-    phone: "+2348023456789",
-    date: "July 8, 2024 12:53 PM",
-  },
-];
+// const sampleData: DataItem[] = [
+//   {
+//     id: 1,
+//     email: "jonasajoku@gmail.com",
+//     fullName: "Jonah Ani Nonso",
+//     phone: "+2348023456789",
+//     date: "July 8, 2024 12:53 PM",
+//   },
+//   {
+//     id: 1,
+//     email: "jonasajoku@gmail.com",
+//     fullName: "Jonah Ani Nonso",
+//     phone: "+2348023456789",
+//     date: "July 8, 2024 12:53 PM",
+//   },
+//   {
+//     id: 1,
+//     email: "jonasajoku@gmail.com",
+//     fullName: "Jonah Ani Nonso",
+//     phone: "+2348023456789",
+//     date: "July 8, 2024 12:53 PM",
+//   },
+// ];
 
 const headers = [
   { content: <> Customer Email</> },
@@ -41,9 +45,29 @@ const headers = [
   { content: <>Added on </> },
 ];
 
-const CustomerTable = () => {
+const CustomerTable = ({
+  allCustomerData,
+}: {
+  allCustomerData: AllCustomerData[];
+}) => {
+  console.log(allCustomerData);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const entriesPerPage = 10;
+
+  // Total entries (could be fetched or passed down as props)
+  const totalEntries = allCustomerData.length;
+
+  // Calculate the data for the current page
+  const indexOfLastEntry = currentPage * entriesPerPage;
+  const indexOfFirstEntry = indexOfLastEntry - entriesPerPage;
+  const currentEntries = allCustomerData.slice(
+    indexOfFirstEntry,
+    indexOfLastEntry
+  );
+
   const navigate = useNavigate();
-  const renderRow = (item: DataItem, index: number) => {
+  const renderRow = (item: AllCustomerData, index: number) => {
     const rowClass = index % 2 === 0 ? "bg-blowBG" : "bg-white";
 
     const handleRowClick = () => {
@@ -58,25 +82,45 @@ const CustomerTable = () => {
         <td className="py-1 px-4">
           <span className="flex items-center gap-2 ">
             <div className={`h-[10px] w-[10px] rounded-full bg-disabledText`} />
-            {item?.email}
+            {item?.emailAddress}
           </span>
         </td>
-        <td className="py-1 px-4 ">{item.fullName}</td>
+        <td className="py-1 px-4 ">
+          {item.firstName} {item?.lastName}
+        </td>
 
-        <td className="py-1 px-4 ">{item.phone}</td>
+        <td className="py-1 px-4 ">{item.phoneNumber}</td>
 
-        <td className="py-1 px-4 ">{item.date}</td>
+        <td className="py-1 px-4 ">
+          {item.createdAt
+            ? format(parseISO(item.createdAt), "MMMM d, yyyy h:mm a")
+            : "N/A"}
+        </td>
+        {/* {item.createdAt ? format(new Date(item.createdAt), "MMMM d, yyyy h:mm a") : 'N/A'} */}
       </tr>
     );
+  };
+
+  const onPageChange = (page: number) => {
+    setCurrentPage(page);
   };
 
   return (
     <section>
       <div className="my-3">
-        <TableComp headers={headers} data={sampleData} renderRow={renderRow} />
+        <TableComp
+          headers={headers}
+          data={currentEntries}
+          renderRow={renderRow}
+        />
       </div>
       <div>
-        <Pagination />
+        <Pagination
+          currentPage={currentPage}
+          totalEntries={totalEntries}
+          entriesPerPage={entriesPerPage}
+          onPageChange={onPageChange}
+        />
       </div>
     </section>
   );
