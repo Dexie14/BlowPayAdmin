@@ -3,11 +3,11 @@ import { AuthResponse } from "../types";
 
 export const SignIn = (userId?: string | null) => {
   const loginUser = useApiMutation<AuthResponse, FormData>({
-    url: "/auth/login ",
+    url: "/admin/auth/login ",
     method: "POST",
   });
   const acceptInvite = useApiMutation<AuthResponse, FormData>({
-    url: `/auth/invite/accept?user=${userId}`,
+    url: `/admin/auth/invite/accept?user=${userId}`,
     method: "POST",
   });
 

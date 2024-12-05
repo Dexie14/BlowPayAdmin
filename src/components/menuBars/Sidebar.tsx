@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import logo from "@/assets/icons/BlowAppLogo.svg";
 import SearchInputComp from "../input/SearchInputComp";
 
@@ -10,12 +10,15 @@ import {
   CustomerIcon,
   DashboardIcon,
   KYCIcon,
+  LogOutIcon,
   MessageIcon,
   SettingIcon,
   TransIcon,
 } from "@/assets/svgComp/SidebarIcons";
 import { NotificationIcon } from "@/assets/svgComp/NavbarIcons";
 import { Avatar, AvatarFallback } from "../ui/avatar";
+import { useAuthStore } from "@/store/authStore";
+import { toast } from "sonner";
 
 type SidebarItem = {
   name: string;
@@ -104,6 +107,14 @@ const sidebarItems: SidebarItem[] = [
 
 const Sidebar = () => {
   const location = useLocation();
+  const navigate = useNavigate();
+  const { logout } = useAuthStore();
+
+  const handleLogout = () => {
+    logout();
+    toast.success("Logged out successfully");
+    navigate("/auth");
+  };
 
   return (
     <div className="">
@@ -175,7 +186,12 @@ const Sidebar = () => {
               <h5 className="">Admin</h5>
             </div>
           </aside>
-          <NotificationIcon />
+          <div className="flex items-center gap-2">
+            <NotificationIcon />
+            <div onClick={handleLogout} className="cursor-pointer">
+              <LogOutIcon />
+            </div>
+          </div>
         </div>
       </main>
     </div>

@@ -60,10 +60,7 @@ const LoginStepTwo = () => {
 
   const { isPending, mutateAsync } = loginUser;
 
-  // const cookieValue = getCookie('fL4vMdEDx5r7cz');
-  // const cookieValue = Cookies.get('fL4vMdEDx5r7cz');
 
-// console.log(cookieValue, "iddd");  
 
 
 

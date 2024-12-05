@@ -13,7 +13,7 @@ interface InvitePayload {
 
 export const AdminInvite = () => {
   const adminInvite = useApiMutation<InviteType, InvitePayload>({
-    url: "/auth/invite ",
+    url: "/admin/auth/invite ",
     method: "POST",
   });
 

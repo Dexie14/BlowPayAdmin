@@ -72,7 +72,7 @@ const Register = () => {
     mutate(formData, {
       onSuccess: (response: any) => {
         toast.success(response?.message);
-        navigate("/auth");
+        navigate(`/auth/otp?user=${userId}`);
       },
       onError: (error: any) => {
         toast.error(error?.message || "Error registering ");

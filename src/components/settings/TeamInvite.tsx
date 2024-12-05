@@ -25,7 +25,7 @@ const TeamInvite = ({
   const { GetRole } = RolesApi();
   const { data, isFetching } = GetRole();
 
-  console.log(teamEmail, selectRole, "team invite");
+  // console.log(teamEmail, selectRole, "team invite");
 
   const RoleOptions = data?.data;
 
@@ -39,17 +39,13 @@ const TeamInvite = ({
       role: selectRole,
     };
 
-    // const formData = new FormData();
-    // formData.append("emailAddres", teamEmail);
-    // formData.append("role", selectRole);
-
     mutate(data, {
       onSuccess: (response: any) => {
         toast.success(response?.message);
         setOpenInvite(false);
       },
       onError: (error: any) => {
-        toast.error(error?.message || "Error Sending Invite");
+        toast.error(error?.data?.error || "Error Sending Invite");
         setOpenInvite(false);
       },
     });

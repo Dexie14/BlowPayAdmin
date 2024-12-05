@@ -21,7 +21,7 @@ export interface AllCustomerData {
 export const customerApi = () => {
   const GetAllCustomers = () =>
     useApiQuery<AllCustonmerType>(["getRole"], {
-      url: `/customers`,
+      url: `/admin/customers`,
       method: "GET",
     });
 

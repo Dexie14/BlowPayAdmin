@@ -15,7 +15,7 @@ export interface RoleObject {
 export const RolesApi = () => {
   const GetRole = () =>
     useApiQuery<RoleType>(["getRole"], {
-      url: `/roles`,
+      url: `/admin/roles`,
       method: "GET",
     });
 

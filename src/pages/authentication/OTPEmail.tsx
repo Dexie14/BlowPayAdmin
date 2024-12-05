@@ -1,24 +1,59 @@
 import AuthTitle from "@/components/auth/AuthTitle";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { VerifyOtp } from "@/hooks/api/auth/verifyOtp";
+import { UserApi } from "@/hooks/api/users/getUsers";
+import { useEffect, useState } from "react";
 
 import OtpInput from "react-otp-input";
 import { useLocation, useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 
 const OTPEmail = () => {
   const [otpValues, setOtpValues] = useState("");
 
-  const { state } = useLocation();
-
+  const { search } = useLocation();
   const navigate = useNavigate();
-  const onSubmit = (data: string) => {
-    if (data) {
-      navigate("/auth/login", {
-        state: {
-          IntendedEmail: "dex123@gmail.com",
-        },
-      });
+
+  const queryParams = new URLSearchParams(search);
+  const userId = queryParams.get("user");
+
+  const { GetUserbyId } = UserApi();
+  const { data } = GetUserbyId(userId ?? "");
+
+  const emailAddress = data?.data?.emailAddress ?? "";
+
+  useEffect(() => {
+    if (userId === null) {
+      navigate("/auth/register");
     }
+  }, [userId, navigate]);
+
+  const { verifyOtp } = VerifyOtp();
+
+  const { mutate, isPending } = verifyOtp;
+
+  const onSubmit = (otpValues: string) => {
+    const otpData = {
+      emailAddress,
+      otp: otpValues,
+    };
+
+    mutate(otpData, {
+      onSuccess: (response: any) => {
+        toast.success(response?.message);
+        navigate(`/auth`);
+      },
+      onError: (error: any) => {
+        toast.error(error?.data?.message || "Error occured");
+      },
+    });
+    // if (otpData) {
+    //   navigate("/auth/login", {
+    //     state: {
+    //       IntendedEmail: "dex123@gmail.com",
+    //     },
+    //   });
+    // }
   };
 
   return (
@@ -27,10 +62,8 @@ const OTPEmail = () => {
         <AuthTitle title="We emailed you a code" />
         <p className="my-7 text-lg text-disabledText">
           We sent a six digit code to{" "}
-          <span className="font-bold text-blowText ">
-            {state.IntendedEmail}
-          </span>
-          . Enter the Code below
+          <span className="font-bold text-blowText ">{emailAddress}</span>.
+          Enter the Code below
         </p>
 
         <div className="flex justify-center">
@@ -48,7 +81,7 @@ const OTPEmail = () => {
           disabled={otpValues.length !== 6}
           className="bg-buttonColor text-blowText text-lg font-normal h-[58px] hover:text-white rounded-[6px] w-full my-7"
         >
-          Verify
+          {isPending ? "Verifying" : "Verify"}
         </Button>
         <p className="text-lg text-disabledText">
           Didn’t receive an email? Try checking your junk folder{" "}
