@@ -1,5 +1,5 @@
 import TableComp from "../table/TableComp";
-import Pagination from "../table/Pagination";
+// import Pagination from "../table/Pagination";
 import {
   Sheet,
   SheetContent,
@@ -65,7 +65,7 @@ const AuditTable = () => {
         <TableComp headers={headers} data={sampleData} renderRow={renderRow} />
       </div>
       <div>
-        <Pagination />
+        {/* <Pagination /> */}
       </div>
       {selectedRow && (
         <Sheet

@@ -28,8 +28,16 @@ import { useState } from "react";
 
 import { Range } from "react-date-range";
 import FilterPop from "@/components/ui/FilterPop";
+import { transactionApi } from "@/hooks/api/crud/transaction";
 
 const TransHistory = () => {
+
+  const { GetAllTransaction } = transactionApi();
+  const { data: allTransData, isPending } = GetAllTransaction();
+
+  // console.log(allTransData);
+
+
   const [state, setState] = useState<Range[]>([
     {
       startDate: new Date(),
@@ -106,7 +114,13 @@ const TransHistory = () => {
               </Button>
             </aside>
           </div>
-          <TransTable />
+          {isPending ? (
+            <div>
+              <p className="text-center">Loading...</p>
+            </div>
+          ) : (
+            <TransTable allTransData={allTransData?.data ?? []} />
+          )}
         </PageLayout>
       </Container>
     </div>

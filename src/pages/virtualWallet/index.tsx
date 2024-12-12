@@ -28,8 +28,14 @@ import { useState } from "react";
 import { Range } from "react-date-range";
 import FilterPop from "@/components/ui/FilterPop";
 import WalletTable from "@/components/wallet/walletTable";
+import { virtualWalletApi } from "@/hooks/api/crud/virtualWallet";
 
 const WalletPage = () => {
+  const { GetAllVirtualWallet } = virtualWalletApi();
+  const { data: allVirtualAccount, isPending } = GetAllVirtualWallet();
+
+  // console.log(allVirtualAccount);
+
   const [state, setState] = useState<Range[]>([
     {
       startDate: new Date(),
@@ -110,7 +116,13 @@ const WalletPage = () => {
               </Button>
             </aside>
           </div>
-          <WalletTable />
+          {isPending ? (
+            <div>
+              <p className="text-center">Loading...</p>
+            </div>
+          ) : (
+            <WalletTable allVirtualAccount={allVirtualAccount?.data ?? []} />
+          )}
         </PageLayout>
       </Container>
     </div>

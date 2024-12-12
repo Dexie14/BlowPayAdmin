@@ -1,7 +1,7 @@
 import TableComp from "../table/TableComp";
 import mastercard from "@/assets/images/mastercard.png";
 import visa from "@/assets/images/VISA.png";
-import Pagination from "../table/Pagination";
+// import Pagination from "../table/Pagination";
 import { useNavigate } from "react-router-dom";
 
 export type DataItem = {
@@ -117,7 +117,7 @@ const CardTable = () => {
         <TableComp headers={headers} data={sampleData} renderRow={renderRow} />
       </div>
       <div>
-        <Pagination />
+        {/* <Pagination /> */}
       </div>
     </section>
   );

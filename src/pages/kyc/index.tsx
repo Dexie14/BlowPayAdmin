@@ -16,8 +16,14 @@ import PageTitle from "@/components/ui/PageTitle";
 
 import FilterPop from "@/components/ui/FilterPop";
 import KycTable from "@/components/KYC/KycTable";
+import { kycApi } from "@/hooks/api/crud/kyc";
 
 const Kyc = () => {
+  const { GetAllKycCustomer } = kycApi();
+  const { data: allKYCData, isPending } = GetAllKycCustomer();
+
+  // console.log(allKYCData);
+
   return (
     <div>
       <TopCard
@@ -55,7 +61,17 @@ const Kyc = () => {
               </Popover>
             </aside>
           </div>
-          <KycTable />
+          {isPending ? (
+            <div>
+              <p className="text-center">Loading...</p>
+            </div>
+          ) : allKYCData?.data && allKYCData?.data?.length > 0 ? (
+            <KycTable allKYCData={allKYCData?.data ?? []} />
+          ) : (
+            <div>
+              <p className="text-center">NO kyc data available</p>
+            </div>
+          )}
         </PageLayout>
       </Container>
     </div>

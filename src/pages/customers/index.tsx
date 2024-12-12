@@ -35,7 +35,7 @@ const Customer = () => {
   const { GetAllCustomers } = customerApi();
   const { data: allCustomers, isFetching } = GetAllCustomers();
 
-  console.log(allCustomers);
+  // console.log(allCustomers);
 
   return (
     <div>

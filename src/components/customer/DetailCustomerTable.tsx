@@ -1,5 +1,5 @@
 import TableComp from "../table/TableComp";
-import Pagination from "../table/Pagination";
+// import Pagination from "../table/Pagination";
 import { useNavigate } from "react-router-dom";
 
 export type DataItem = {
@@ -90,7 +90,7 @@ const DetailCustomerTable = () => {
         <TableComp headers={headers} data={sampleData} renderRow={renderRow} />
       </div>
       <div>
-        <Pagination />
+        {/* <Pagination /> */}
       </div>
     </section>
   );
