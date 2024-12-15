@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 
-const defaultTheme = require("tailwindcss/defaultTheme");
+// const defaultTheme = require("tailwindcss/defaultTheme");
 
 export default {
   darkMode: ["class"],
@@ -15,10 +15,10 @@ export default {
       boxShadow: {
         custom: "0px 5px 20px 0px rgba(0, 0, 0, 0.05)", 
       },
-      fontFamily: {
-        Nunito: ["Nunito Sans", ...defaultTheme.fontFamily.sans],
-        Urbanist: ["Urbanist", ...defaultTheme.fontFamily.sans],
-      },
+      // fontFamily: {
+      //   Nunito: ["Nunito Sans", ...defaultTheme.fontFamily.sans],
+      //   Urbanist: ["Urbanist", ...defaultTheme.fontFamily.sans],
+      // },
       colors: {
         blackShade: "#131313",
         borderOutline: "#E6E9EC",
@@ -45,5 +45,5 @@ export default {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  // plugins: [require("tailwindcss-animate")],
 };
